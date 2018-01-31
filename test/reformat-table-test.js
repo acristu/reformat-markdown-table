@@ -24,4 +24,22 @@ describe('reformat-table', function() {
     expect(reformat(input)).to.eql(output);
   });
 
+  it('should reformat a markdown table using <tab> delimiter', function() {
+    var input = [
+      '\t Header 1 \t   Header 2   \t Header 3\tH\t',
+      '\t --- \t --- \t :---: \t :---: \t',
+      '\t aaa \tbbb\t cccc \t ddd \t',
+      '   \t   eee \tfff'
+    ].join('\n'),
+    output = [
+      '\t Header 1 \t Header 2 \t Header 3 \t   H   \t',
+      '\t----------\t----------\t:--------:\t:-----:\t',
+      '\t aaa      \t bbb      \t   cccc   \t  ddd  \t',
+      '\t eee      \t fff      \t          \t       \t',
+      ''
+    ].join('\n');
+
+    expect(reformat(input, '\t')).to.eql(output);
+  });
+
 });

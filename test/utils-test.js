@@ -20,9 +20,37 @@ describe('utils', function() {
         ['---', '---', ':---:', ':---:'],
         ['aaa', 'bbb', 'ccc', 'ddd'],
         ['eee', 'fff']
-      ];
+      ],
+      maxLengthPerColumn = [8, 8, 8, 5],
+      table = utils.splitStringToTable(input);
 
-      expect(utils.splitStringToTable(input)).to.eql(output);
+      expect(table).to.eql(output);
+
+      utils.fillInMissingColumns(table);
+      expect(utils.getMaxLengthPerColumn(table)).to.eql(maxLengthPerColumn);
+
+    });
+
+    it('should split input string to a 2D array with <tab> delimiter', function() {
+      var input = [
+        '\t Header 1 \t   Header 2   \t Header 3\tH\t',
+        '\t --- \t --- \t :---: \t :---: \t',
+        '\t aaa \tbbb\t ccc \t ddd \t',
+        '   \t   eee \tfff'
+      ].join('\n'),
+      output = [
+        ['Header 1', 'Header 2', 'Header 3', 'H'],
+        ['---', '---', ':---:', ':---:'],
+        ['aaa', 'bbb', 'ccc', 'ddd'],
+        ['eee', 'fff']
+      ],
+      maxLengthPerColumn = [8, 8, 8, 5],
+      table = utils.splitStringToTable(input, '\t');
+
+      expect(table).to.eql(output);
+
+      utils.fillInMissingColumns(table);
+      expect(utils.getMaxLengthPerColumn(table)).to.eql(maxLengthPerColumn);
     });
 
   });
