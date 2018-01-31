@@ -26,16 +26,16 @@ describe('reformat-table', function() {
 
   it('should reformat a markdown table using <tab> delimiter', function() {
     var input = [
-      '\t Header 1 \t   Header 2   \t Header 3\tH\t',
-      '\t --- \t --- \t :---: \t :---: \t',
-      '\t aaa \tbbb\t cccc \t ddd \t',
-      '   \t   eee \tfff'
+      'Header 1 \t   Header 2   \t Header 3\tH',
+      '--- \t --- \t :---: \t :---:',
+      'aaa \tbbb\t cccc \t ddd',
+      '   eee \tfff'
     ].join('\n'),
     output = [
-      '\t Header 1 \t Header 2 \t Header 3 \t   H   \t',
-      '\t----------\t----------\t:--------:\t:-----:\t',
-      '\t aaa      \t bbb      \t   cccc   \t  ddd  \t',
-      '\t eee      \t fff      \t          \t       \t',
+      ' Header 1 \t Header 2 \t Header 3 \t   H   ',
+      '----------\t----------\t:--------:\t:-----:',
+      ' aaa      \t bbb      \t   cccc   \t  ddd  ',
+      ' eee      \t fff      \t          \t       ',
       ''
     ].join('\n');
 
@@ -44,12 +44,12 @@ describe('reformat-table', function() {
 
   it('should reformat table with <tab> delimiter and no header', function() {
     var input = [
-      '\taaaa\tbbbb\tcccc\tdddd',
-      '\t \t1\t2\t3'
+      'aaaa\tbbbb\tcccc\tdddd',
+      '\t1\t2\t3'
     ].join('\n'),
     output = [
-      '\t aaaa \t bbbb \t cccc \t dddd \t',
-      '\t      \t 1    \t 2    \t 3    \t',
+      'aaaa\tbbbb\tcccc\tdddd',
+      '    \t1   \t2   \t3   ',
       ''
     ].join('\n');
 
