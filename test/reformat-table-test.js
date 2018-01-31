@@ -42,4 +42,17 @@ describe('reformat-table', function() {
     expect(reformat(input, '\t')).to.eql(output);
   });
 
+  it('should reformat table with <tab> delimiter and no header', function() {
+    var input = [
+      '\taaaa\tbbbb\tcccc\tdddd',
+      '\t \t1\t2\t3'
+    ].join('\n'),
+    output = [
+      '\t aaaa \t bbbb \t cccc \t dddd \t',
+      '\t      \t 1    \t 2    \t 3    \t',
+      ''
+    ].join('\n');
+
+    expect(reformat(input, '\t')).to.eql(output);
+  });
 });

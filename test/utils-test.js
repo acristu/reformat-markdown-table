@@ -48,6 +48,7 @@ describe('utils', function() {
       table = utils.splitStringToTable(input, '\t');
 
       expect(table).to.eql(output);
+      expect(table[1].join('').indexOf('-') >= 0).to.eql(true);
 
       utils.fillInMissingColumns(table);
       expect(utils.getMaxLengthPerColumn(table)).to.eql(maxLengthPerColumn);
